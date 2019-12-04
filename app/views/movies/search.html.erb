@@ -1,0 +1,30 @@
+<h1>映画検索</h1>
+
+<div>
+  <%= form_with(method: :get, local: true) do |f| %>
+    <%= f.label :title_search,"タイトル" %>
+    <%= f.text_field :title %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
+<br>
+<div>
+  <% if @movies["results"].blank?%>
+    条件に一致する映画はありません
+  <% else %>
+    <table border="1">
+      <tr>
+        <th>タイトル</th>
+        <th>上映日</th>
+        <th>あらすじ</th>
+      </tr>
+      <% @movies["results"].each do |movie| %>
+        <tr>
+          <td><%= movie['title'] %></td>
+          <td><%= movie['release_date'] %></td>
+          <td><%= movie['overview'] %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
