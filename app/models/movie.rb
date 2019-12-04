@@ -50,11 +50,6 @@ class Movie < ApplicationRecord
     Tmdb::Api.key("30dd6dfe595c6a70ddad14ddc4b58ac5")
     Tmdb::Api.language("ja")
     result = Tmdb::Movie.detail(id)
-    movie = Movie.new(title:result.title)
-    if movie.save
-      movie
-    else
-      movie
-    end
+    movie = Movie.find_or_create_by(title:result.title)
   end
 end
