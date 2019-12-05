@@ -50,6 +50,6 @@ class Movie < ApplicationRecord
     Tmdb::Api.key("30dd6dfe595c6a70ddad14ddc4b58ac5")
     Tmdb::Api.language("ja")
     result = Tmdb::Movie.detail(id)
-    movie = Movie.find_or_create_by(title:result.title)
+    movie = Movie.find_or_create_by(title:result.title,overview:result.overview,image: "https://image.tmdb.org/t/p/w92#{result.poster_path}")
   end
 end
