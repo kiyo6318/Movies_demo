@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_123853) do
+ActiveRecord::Schema.define(version: 2019_12_08_150701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_123853) do
     t.datetime "updated_at", null: false
     t.binary "image"
     t.text "overview"
+    t.bigint "movie_id"
   end
 
 end
