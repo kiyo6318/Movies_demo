@@ -1,7 +1,8 @@
 class Movie < ApplicationRecord
-  validates :title, uniqueness: true
+  has_many :posts, primary_key: 'movie_id', foreign_key: 'movie_id',dependent: :destroy
+  validates :movie_id, uniqueness: true
 
-  def self.search(title)
+   def self.search(title)
     require 'uri'
     require 'net/http'
     url = URI.parse URI.encode("https://api.themoviedb.org/3/search/movie?page=1&query=#{title}&language=ja-JA&api_key=30dd6dfe595c6a70ddad14ddc4b58ac5")
@@ -50,6 +51,10 @@ class Movie < ApplicationRecord
     Tmdb::Api.key("30dd6dfe595c6a70ddad14ddc4b58ac5")
     Tmdb::Api.language("ja")
     result = Tmdb::Movie.detail(id)
-    movie = Movie.find_or_create_by(title:result.title,overview:result.overview,image: "https://image.tmdb.org/t/p/w92#{result.poster_path}")
+    movie = Movie.find_or_create_by(movie_id:result.id,title:result.title)
+  end
+
+  def to_param
+    movie_id.to_s
   end
 end

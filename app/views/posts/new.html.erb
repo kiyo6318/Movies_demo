@@ -1,0 +1,7 @@
+<%= @movie.title %>
+<%= form_with(model:[@movie,@post]) do |f| %>
+<%= f.hidden_field :title, value: @movie.title %>
+<%= f.hidden_field :movie_id, value: @movie.movie_id %>
+<%= f.text_area :content %>
+<%= f.submit %>
+<% end %>

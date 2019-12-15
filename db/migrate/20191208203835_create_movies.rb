@@ -1,11 +1,8 @@
 class CreateMovies < ActiveRecord::Migration[5.2]
   def change
-    create_table :movies do |t|
+    create_table(:movies,id: false) do |t|
+      t.bigint :movie_id
       t.string :title
-      t.integer :genre
-      t.string :image
-
-      t.timestamps
     end
   end
 end
